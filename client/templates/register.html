@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/register.css') }}">
+    <script src="{{ url_for('static', filename='javascript/register.js') }}"></script>
+    <title>Register New User Page</title>
+</head>
+<body>
+    <header class="header">
+    </header>
+    <div class="page-div">
+        <div class="form-div">
+            <h2 class="registration-heading">Fill out this Form to Register a New User:</h2>
+
+            {% for message in get_flashed_messages() %}
+            <div class="alert-warning alert" role="alert" aria-label="Close">
+                <button type="button" class="alert-warning alert-button close" id="alert-button" title="Dismiss Warning">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            <form method="post" class="form-style">
+                <div class="form-group sec">
+                    <label for="first_name" class="registration">First Name:  </label>
+                    <input type="text" name="first_name" id="first_name" placeholder="First Name" class="reg-input" title="Enter a value in first name field" required>
+                </div>
+                <div class="form-group sec">
+                    <label for="last_name" class="registration">Last Name:  </label>
+                    <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="reg-input" title="Enter a value in last name field" required>
+                </div>
+                <div class="form-group sec">
+                    <label for="username" class="registration">Username:  </label>
+                    <input type="text" name="username" id="username" placeholder="Username" class="reg-input" title="Enter a value in username field" required>
+                </div>
+                <div class="form-group sec">
+                    <label for="email" class="registration">Email:  </label>
+                    <input type="email" name="email" id="email" placeholder="Email" class="reg-input" title="Enter a value in email field" required>
+                </div>
+                <div class="form-group sec">
+                    <label for="password" class="registration">Password:  </label>
+                    <input type="password" name="password" id="password" placeholder="Password" class="reg-input" title="Enter a value in password field" required>
+                </div>
+                <div class="form-group sec">
+                    <label for="birthday" class="registration">Birthday:  </label>
+                    <input type="date" name="birthday" id="birthday" class="reg-input" title="Choose a value for birthday field" required>
+                </div>
+                <div class="form-group sec">
+                    <label for="favorite_number" class="registration">Favorite Number:  </label>
+                    <input type="number" name="favorite_number" id="favorite_number" class="reg-input" title="Enter a number in favorite number field" required>
+                </div>
+                <button type="submit" class="register-button" id="register-button" title="Select to Register User">
+                    Register User
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

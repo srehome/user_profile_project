@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='javascript/login.js') }}"></script> 
+    <title>User Login Page</title>
+</head>
+<body>
+    <header class="header">
+    </header>
+    
+    <div class="main-div">
+    
+        <h2 class="login-heading">Login</h2>
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert-warning alert" role="alert" aria-label="Close">
+            <button type="button" class="alert-warning alert-button close" id="alert-button" title="Dismiss Warning">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        <form method="post" class="login-form">
+            <input type="text" name="username" id="username" placeholder="Username" class="login-input" title="Enter a value in username field" required>
+
+            <input type="password" name="password" id="password" placeholder="Password" class="login-input" title="Enter a value in password field" required>
+
+            <button type="submit" class="login-submit-button login-btn" id="login-btn" title="Select to Log In">
+                LOGIN
+            </button>
+        </form>
+
+        <hr>
+
+        <form method="get" action="/register_user" class="login-form">
+            <button type="submit" class="login-submit-button register-btn" id="register-btn" title="Select to Register New User">
+                REGISTER NEW USER
+            </button>
+        </form>
+    </div>
+</body>
+</html>

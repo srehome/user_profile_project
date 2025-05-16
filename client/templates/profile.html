@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+    <script src="{{ url_for('static', filename='javascript/profile.js') }}"></script>
+    <title>User Profile Page</title>
+</head>
+<body>
+    <header class="header">
+        <form method="get" action="/logout" class="logout-form">
+            <button type="submit" class="submit-button logout-btn" id="logout-btn" title="Select to Logout">
+                LOGOUT
+            </button>
+        </form>
+    </header>
+    <div class="page-div">
+        <div class="single-user">
+
+            {% for message in get_flashed_messages() %}
+            <div class="alert-warning alert" role="alert" aria-label="Close">
+                <button type="button" class="alert-warning alert-button close" id="alert-button" title="Dismiss Warning">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            {% if user.profile_picture %}
+                <img src="{{ url_for('static', filename=user.profile_picture) }}" alt="{{ user.username }}'s Profile Picture" width="100" height="100">
+            {% endif %}
+            <h1 title="User">{{ user.username }}</h1>
+            <p class="single-user">
+                <b>First Name:</b> {{ user.first_name }}
+            </p>
+            <p class="single-user">
+                <b>Last Name:</b> {{ user.last_name }}
+            </p>
+            <hr>
+            <p class="single-user">
+                <b>📧 Email:</b> {{ user.email }}
+            </p>
+            <p class="single-user">
+                <b>📅 Birthday:</b> {{ user.birthday.strftime('%B %e, %Y') }}
+            </p>
+            <p class="single-user">
+                <b>🔢 Favorite Number:</b> {{ user.favorite_number }}
+            </p>
+        </div>
+        <form method="get" action="/update_profile" class="update-form">
+            <button type="submit" class="submit-button update-btn" id="update-btn" title="Select to Update Profile">
+                UPDATE PROFILE
+            </button>
+        </form>
+        <form method="post" action="/upload_profile_picture" class="upload-form" enctype="multipart/form-data">
+            <label for="profile-picture-upload" class="custom-file-upload">
+                <input type="file" name="profile_picture" id="profile-picture-upload">
+                SELECT PROFILE PICTURE
+            </label>
+            <button type="submit" class="submit-button upload-btn" id="upload-btn" title="Select to Upload Profile Picture">
+                UPLOAD PROFILE PICTURE
+            </button>
+        </form>
+    </div>
+</body>
+</html>    
